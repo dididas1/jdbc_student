@@ -9,13 +9,25 @@ import java.sql.SQLException;
 public class ConnectionFactory {
 	private static final ConnectionFactory instence = new ConnectionFactory();
 
-	public static ConnectionFactory getInstence() {
-		return instence;
+	public static Connection getInstence() {
+		return instence.createConnection();
 	}
 	
 	
 
-	public Connection createConnection(){
+	public ConnectionFactory() {
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+		} catch (ClassNotFoundException e) {
+			System.err.printf("MySql Driver not Fount");
+			System.exit(-1);
+		}	
+		
+	} //end of class
+
+
+
+	private Connection createConnection(){
 		Connection connection = null;
 		String url="jdbc:mysql://localhost:3306/mybatis";
 		String user="user_mybatis";
@@ -23,10 +35,11 @@ public class ConnectionFactory {
 		try {
 			connection = DriverManager.getConnection(url, user, password);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return connection;
 		
 	}
+	
+	
 }

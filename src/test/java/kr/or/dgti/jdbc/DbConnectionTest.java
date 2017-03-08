@@ -15,7 +15,7 @@ public class DbConnectionTest {
 	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		connection= ConnectionFactory.getInstence().createConnection();
+		connection= ConnectionFactory.getInstence();
 	}
 
 	@AfterClass

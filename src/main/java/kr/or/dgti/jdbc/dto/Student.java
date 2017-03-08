@@ -10,6 +10,22 @@ public class Student {
 	public int getStudId() {
 		return studId;
 	}
+	
+	
+	public Student() {
+		
+	}
+	
+
+	public Student(int studId, String name, String email, Date dbo) {
+		super();
+		this.studId = studId;
+		this.name = name;
+		this.email = email;
+		this.dbo = dbo;
+	}
+
+
 	public void setStudId(int studId) {
 		this.studId = studId;
 	}

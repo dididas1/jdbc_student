@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.List;
 
 
@@ -30,24 +31,27 @@ public class StudentService implements StudentDao {
 	}
 
 	@Override
-	public void insertStudent(Student student) {
-		Connection connection =ConnectionFactory.getInstence().createConnection();
+	public int insertStudent(Student student) {
+		Connection connection =ConnectionFactory.getInstence();
 		PreparedStatement pstmt = null;
 		String sql="insert into student values(?,?,?,?)";
+		int res=-1;
 		try {
 			pstmt= connection.prepareStatement(sql);
 			pstmt.setInt(1, student.getStudId());
 			pstmt.setString(2, student.getName());
 			pstmt.setString(3, student.getEmail());
-			pstmt.setDate(4, (Date) student.getDbo());
-			pstmt.executeUpdate();
+			pstmt.setTimestamp(4, new Timestamp(student.getDbo().getTime()));
+			res=pstmt.executeUpdate();
+			
 		} catch (SQLException e) {
 			System.err.printf("중복학생존재", student);
 			e.printStackTrace();
 		}finally{
 			JdbcUtill.close(pstmt);
-			JdbcUtill.close(connection);
+			
 		}
+		return res;
 		
 	}
 
