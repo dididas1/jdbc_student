@@ -6,7 +6,7 @@ public class Student {
 	private int studId;
 	private String name;
 	private String email;
-	private Date dbo;
+	private Date dob;
 	public int getStudId() {
 		return studId;
 	}
@@ -17,12 +17,13 @@ public class Student {
 	}
 	
 
-	public Student(int studId, String name, String email, Date dbo) {
+
+	public Student(int studId, String name, String email, Date dob) {
 		super();
 		this.studId = studId;
 		this.name = name;
 		this.email = email;
-		this.dbo = dbo;
+		this.dob = dob;
 	}
 
 
@@ -41,15 +42,20 @@ public class Student {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public Date getDbo() {
-		return dbo;
+	
+	public Date getDob() {
+		return dob;
 	}
-	public void setDbo(Date dbo) {
-		this.dbo = dbo;
+
+
+	public void setDob(Date dob) {
+		this.dob = dob;
 	}
+
+
 	@Override
 	public String toString() {
-		return String.format(" [studId=%s, name=%s, email=%s, dbo=%s]", studId, name, email, dbo);
+		return String.format(" [studId=%s, name=%s, email=%s, dbo=%s]", studId, name, email, dob);
 	}
 	
 	

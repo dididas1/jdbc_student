@@ -3,6 +3,7 @@ package kr.or.dgti.jdbc;
 import static org.junit.Assert.*;
 
 import java.util.Date;
+import java.util.List;
 
 import org.junit.AfterClass;
 import org.junit.Assert;
@@ -29,6 +30,14 @@ public class StudentServiceTest {
 		Student insStudent = new Student(1, "김두환", "di@naver.com", new Date());
 		int res= studentservice.insertStudent(insStudent);
 		Assert.assertEquals(1, res);
+	}
+	@Test
+	public void testfindAllStudent(){
+		List<Student> list= studentservice.findAllStudent();
+		for(Student s:list){
+			System.out.println(s);
+		}
+		Assert.assertNotNull(list);
 	}
 
 }
